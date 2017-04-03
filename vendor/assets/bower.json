@@ -1,0 +1,8 @@
+{
+  "name": "dsl-generated-dependencies",
+  "dependencies": {
+    "animate.css": "latest",
+    "underscore": "latest",
+    "ngInflection": "latest"
+  }
+}

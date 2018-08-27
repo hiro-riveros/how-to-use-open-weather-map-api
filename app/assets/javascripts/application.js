@@ -22,8 +22,14 @@
 //= require angular-resource
 //= require inflection/inflection.min
 //= require ngInflection/dist/ngInflection.min
+//= require chartkick
+
 
 //= require app/app
 //= require_tree ./app/config
 //= require_tree ./app/controllers
 //= require_tree ./app/models
+
+$(document).on('turbolinks:load', function() {
+  $('select#city_id').on('change', function() { this.form.submit(); });
+});

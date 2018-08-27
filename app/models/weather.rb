@@ -20,4 +20,12 @@ class Weather < ApplicationRecord
         city.weathers.daily
       end
   end
+
+  def self.last_month(city = 3)
+    where(created_at: (Date.current - 1.month)..Date.current.end_of_day, city_id: city)
+  end
+
+  def self.group_max_temp
+    select(:created_at, :max).group(:created_at, :max)
+  end
 end

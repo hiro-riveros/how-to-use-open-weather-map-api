@@ -1,0 +1,15 @@
+.row
+  .col-md-3
+  .col-md-6.text-center
+    br
+    = form_tag(charts_weathers_path, method: :get)
+      .form-group
+        label Ciudad: &nbsp;&nbsp;
+        = select_tag('city_id', options_for_select(@cities.pluck(:name, :id), params[:city_id]), class: 'form-control', prompt: 'Seleccionar ciudad')
+  .col-md-3
+.row
+  .card
+    .card-block
+      .row
+        .col-md-12
+          = area_chart @weathers.pluck(:created_at, :max)

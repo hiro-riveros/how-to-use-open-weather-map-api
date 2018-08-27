@@ -1,8 +1,9 @@
 class WeathersController < ApplicationController
-  before_action :set_city, only: [:current]
+  before_action :set_city, only: %i[current charts]
+  before_action :set_cities, only: %i[index current charts]
 
   def index
-    @cities = City.all.order(name: :asc)
+    @cities
   end
 
   def current
@@ -13,9 +14,17 @@ class WeathersController < ApplicationController
     render json: { message: e.message, state: :error }, status: :bad_request
   end
 
+  def charts
+    @weathers = Weather.last_month(@city.try(:id)).group_max_temp
+  end
+
   private
 
   def set_city
     @city = City.find_by(id: params[:city_id]) if params[:city_id]
+  end
+
+  def set_cities
+    @cities = City.all.order(name: :asc)
   end
 end

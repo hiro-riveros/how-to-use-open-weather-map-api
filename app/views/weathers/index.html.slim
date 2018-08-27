@@ -11,4 +11,5 @@
               = select_tag('city-id', options_for_select(@cities.pluck(:name, :id)), class: 'form-control', prompt: 'Seleccionar ciudad', 'ng-model' => 'city.id', 'ng-change' => 'changeCity(city)')
           br
           h4.center Temperatura: {{ weather.current | number: 0 }} °C {{ weather.description | titleize }}
-        .col-md-3
+        .col-md-3.pt-20
+          = link_to 'Graficos', charts_weathers_path(city_id: 3), class: 'btn btn-link', data: { turbolinks: false }
